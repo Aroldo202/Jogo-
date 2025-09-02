@@ -1,4 +1,4 @@
-# Jogo-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Formatação BRL
