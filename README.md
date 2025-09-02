@@ -1,257 +1,164 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-
-// Formatação BRL
-const brl = (value) =>
-  new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-    value
-  );
-
-// Dados do jogo
-const MATCH = {
-  home: "Corinthians",
-  away: "Flamengo",
-  dateISO: "2025-09-28T16:00:00-03:00",
-  stadium: "Neo Química Arena — São Paulo/SP",
-};
-
-// Setores
-const SECTORS = [
-  { id: "norte", label: "Arquibancada Norte", price: 63.9, short: "Norte" },
-  { id: "sul", label: "Arquibancada Sul", price: 75.0, short: "Sul" },
-  { id: "leste-inf", label: "Leste Inferior", price: 120.0, short: "Leste Inf" },
-  { id: "leste-sup", label: "Leste Superior", price: 95.0, short: "Leste Sup" },
-  { id: "oeste-inf", label: "Oeste Inferior", price: 180.0, short: "Oeste Inf" },
-  { id: "oeste-sup", label: "Oeste Superior", price: 150.0, short: "Oeste Sup" },
-  { id: "camarote", label: "Camarote (VIP)", price: 225.8, short: "Camarote" },
-  { id: "visitante", label: "Setor Visitante", price: 89.9, short: "Visitante" },
-];
-
-// Cores por setor
-const COLORS = {
-  norte: "#047857",
-  sul: "#0EA5A4",
-  "leste-inf": "#4F46E5",
-  "leste-sup": "#2563EB",
-  "oeste-inf": "#C026D3",
-  "oeste-sup": "#7C3AED",
-  camarote: "#D97706",
-  visitante: "#F43F5E",
-};
-
-// CPF simples
-const validateCPF = (cpf) => {
-  const onlyNums = cpf.replace(/\D/g, "");
-  return onlyNums.length === 11;
-};
-
-// Arena Map
-function ArenaMap({ onSelect, selected }) {
-  return (
-    <svg viewBox="0 0 800 500" className="w-full h-auto">
-      <rect x="150" y="80" width="500" height="340" rx="20" fill="#0F9D58" />
-      {/* Norte */}
-      <g onClick={() => onSelect("norte")} aria-label="Arquibancada Norte" style={{ cursor: "pointer" }}>
-        <rect x="220" y="30" width="360" height="50" rx="12" fill={COLORS.norte} opacity={selected === "norte" ? 1 : 0.95} />
-        <text x="400" y="60" textAnchor="middle" fontSize="14" fill="#fff">Arquibancada Norte</text>
-      </g>
-      {/* Sul */}
-      <g onClick={() => onSelect("sul")} aria-label="Arquibancada Sul" style={{ cursor: "pointer" }}>
-        <rect x="220" y="420" width="360" height="50" rx="12" fill={COLORS.sul} opacity={selected === "sul" ? 1 : 0.95} />
-        <text x="400" y="450" textAnchor="middle" fontSize="14" fill="#fff">Arquibancada Sul</text>
-      </g>
-      {/* Leste */}
-      <g onClick={() => onSelect("leste-sup")} aria-label="Leste Superior" style={{ cursor: "pointer" }}>
-        <rect x="670" y="120" width="90" height="110" rx="12" fill={COLORS["leste-sup"]} opacity={selected === "leste-sup" ? 1 : 0.95} />
-        <text x="715" y="170" textAnchor="middle" fontSize="12" fill="#fff">Leste Sup</text>
-      </g>
-      <g onClick={() => onSelect("leste-inf")} aria-label="Leste Inferior" style={{ cursor: "pointer" }}>
-        <rect x="670" y="260" width="90" height="120" rx="12" fill={COLORS["leste-inf"]} opacity={selected === "leste-inf" ? 1 : 0.95} />
-        <text x="715" y="320" textAnchor="middle" fontSize="12" fill="#fff">Leste Inf</text>
-      </g>
-      {/* Oeste */}
-      <g onClick={() => onSelect("oeste-sup")} aria-label="Oeste Superior" style={{ cursor: "pointer" }}>
-        <rect x="40" y="120" width="90" height="110" rx="12" fill={COLORS["oeste-sup"]} opacity={selected === "oeste-sup" ? 1 : 0.95} />
-        <text x="85" y="170" textAnchor="middle" fontSize="12" fill="#fff">Oeste Sup</text>
-      </g>
-      <g onClick={() => onSelect("oeste-inf")} aria-label="Oeste Inferior" style={{ cursor: "pointer" }}>
-        <rect x="40" y="260" width="90" height="120" rx="12" fill={COLORS["oeste-inf"]} opacity={selected === "oeste-inf" ? 1 : 0.95} />
-        <text x="85" y="320" textAnchor="middle" fontSize="12" fill="#fff">Oeste Inf</text>
-      </g>
-      {/* Camarote */}
-      <g onClick={() => onSelect("camarote")} aria-label="Camarote" style={{ cursor: "pointer" }}>
-        <rect x="320" y="10" width="160" height="18" rx="8" fill={COLORS.camarote} opacity={selected === "camarote" ? 1 : 0.95} />
-        <text x="400" y="23" textAnchor="middle" fontSize="11" fill="#fff">Camarote</text>
-      </g>
-      {/* Visitante */}
-      <g onClick={() => onSelect("visitante")} aria-label="Visitante" style={{ cursor: "pointer" }}>
-        <rect x="520" y="420" width="120" height="50" rx="12" fill={COLORS.visitante} opacity={selected === "visitante" ? 1 : 0.95} />
-        <text x="580" y="450" textAnchor="middle" fontSize="12" fill="#fff">Visitante</text>
-      </g>
-    </svg>
-  );
-}
-
-function Cart({ cart, setCart, total, setShowPayment }) {
-  const updateQty = (id, delta) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, qty: Math.max(1, item.qty + delta) } : item
-      )
-    );
-  };
-
-  return (
-    <div className="rounded-2xl border p-6 bg-white shadow-sm">
-      <div className="flex items-center justify-between">
-        <div className="font-semibold">Carrinho</div>
-        <div className="text-sm text-neutral-600">{cart.length} item(s)</div>
-      </div>
-      <div className="mt-4">
-        {cart.length === 0 ? (
-          <div className="text-sm text-neutral-600">Seu carrinho está vazio.</div>
-        ) : (
-          cart.map((it) => (
-            <div key={it.id} className="flex items-center justify-between py-2 border-b last:border-b-0">
-              <div>
-                <div className="font-medium">{it.label}</div>
-                <div className="flex gap-2 items-center text-xs text-neutral-600">
-                  <button onClick={() => updateQty(it.id, -1)} className="px-2 border rounded">-</button>
-                  <span>{it.qty}</span>
-                  <button onClick={() => updateQty(it.id, 1)} className="px-2 border rounded">+</button>
-                </div>
-              </div>
-              <div className="text-sm font-semibold">{brl(it.price * it.qty)}</div>
-            </div>
-          ))
-        )}
-      </div>
-      <div className="mt-4 border-t pt-4 flex items-center justify-between">
-        <div className="font-semibold">Total</div>
-        <div className="font-semibold">{brl(total)}</div>
-      </div>
-      <div className="mt-4">
-        <button
-          disabled={cart.length === 0}
-          onClick={() => setShowPayment(true)}
-          className={`w-full rounded-2xl px-4 py-2 ${
-            cart.length === 0 ? "bg-neutral-200 text-neutral-500" : "bg-black text-white"
-          }`}
-        >
-          Ir para pagamento
-        </button>
-      </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venda de Ingressos - Arena</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .arena {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    svg {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+    .cart, .checkout {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .btn-primary { background: black; color: white; }
+    .btn-secondary { background: #ddd; }
+    .cart-items div { display: flex; justify-content: space-between; margin: 0.5rem 0; }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.3rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    @media (min-width: 768px) {
+      .container { flex-direction: row; }
+      .arena, .cart, .checkout { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Venda de Ingressos - Arena</h1>
+  </header>
+  <div class="container">
+    <div class="arena">
+      <h2>Mapa da Arena</h2>
+      <svg viewBox="0 0 300 200">
+        <g data-id="norte" fill="#4ade80"><rect x="20" y="20" width="100" height="40" /></g>
+        <g data-id="sul" fill="#60a5fa"><rect x="20" y="140" width="100" height="40" /></g>
+        <g data-id="leste" fill="#facc15"><rect x="180" y="20" width="100" height="40" /></g>
+        <g data-id="oeste" fill="#f87171"><rect x="180" y="140" width="100" height="40" /></g>
+      </svg>
+      <p>Clique em um setor para selecionar ingressos.</p>
     </div>
-  );
-}
 
-function CheckoutForm({ buyer, setBuyer, handleCheckout, total, showPayment, setShowPayment }) {
-  return (
-    <div className={`rounded-2xl border p-6 bg-white shadow-sm ${!showPayment ? "opacity-60" : ""}`}>
-      <h4 className="font-semibold">Pagamento e dados do ingresso</h4>
-      {showPayment ? (
-        <form onSubmit={handleCheckout} className="mt-4 space-y-3">
-          <div>
-            <label className="text-xs">Nome completo</label>
-            <input value={buyer.fullName} onChange={(e) => setBuyer({ ...buyer, fullName: e.target.value })} required className="mt-1 w-full rounded-lg border px-3 py-2" />
-          </div>
-          <div>
-            <label className="text-xs">Data de nascimento</label>
-            <input type="date" value={buyer.birth} onChange={(e) => setBuyer({ ...buyer, birth: e.target.value })} required className="mt-1 w-full rounded-lg border px-3 py-2" />
-          </div>
-          <div>
-            <label className="text-xs">CPF</label>
-            <input value={buyer.cpf} onChange={(e) => setBuyer({ ...buyer, cpf: e.target.value })} required placeholder="000.000.000-00" className="mt-1 w-full rounded-lg border px-3 py-2" />
-          </div>
-          <div>
-            <label className="text-xs">Nome no ingresso</label>
-            <input value={buyer.ticketName} onChange={(e) => setBuyer({ ...buyer, ticketName: e.target.value })} required placeholder="Nome que aparecerá no ingresso" className="mt-1 w-full rounded-lg border px-3 py-2" />
-          </div>
-          <div className="pt-3 border-t flex items-center justify-between">
-            <div className="text-sm text-neutral-600">Forma de pagamento (simulação)</div>
-            <div className="text-sm font-semibold">Total {brl(total)}</div>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <button type="submit" className="mt-3 rounded-2xl bg-black text-white px-4 py-2">Finalizar compra</button>
-            <button type="button" onClick={() => setShowPayment(false)} className="mt-3 rounded-2xl border px-4 py-2">Voltar</button>
-          </div>
-        </form>
-      ) : (
-        <div className="text-sm text-neutral-600 mt-3">Adicione um setor ao carrinho para finalizar.</div>
-      )}
+    <div class="cart">
+      <h2>Carrinho</h2>
+      <div class="cart-items"></div>
+      <p><strong>Total:</strong> <span id="total">R$ 0,00</span></p>
+      <button id="checkoutBtn" class="btn-primary" disabled>Ir para pagamento</button>
     </div>
-  );
-}
 
-export default function TicketSalesNeo() {
-  const [selected, setSelected] = useState(null);
-  const [cart, setCart] = useState([]);
-  const [showPayment, setShowPayment] = useState(false);
-  const [buyer, setBuyer] = useState({ fullName: "", birth: "", cpf: "", ticketName: "" });
-  const [orderId, setOrderId] = useState(null);
+    <div class="checkout">
+      <h2>Checkout</h2>
+      <form id="checkoutForm">
+        <input type="text" id="nome" placeholder="Nome completo" required />
+        <input type="text" id="cpf" placeholder="CPF (apenas números)" required maxlength="11" />
+        <select id="pagamento" required>
+          <option value="">Forma de pagamento</option>
+          <option value="pix">PIX</option>
+          <option value="credito">Cartão de Crédito</option>
+          <option value="debito">Cartão de Débito</option>
+        </select>
+        <button type="submit" class="btn-primary">Finalizar Compra</button>
+      </form>
+      <div id="mensagem"></div>
+    </div>
+  </div>
 
-  const selectedSector = useMemo(() => SECTORS.find((s) => s.id === selected), [selected]);
-  const total = cart.reduce((acc, it) => acc + it.price * it.qty, 0);
+  <script>
+    const setores = {
+      norte: { nome: "Arquibancada Norte", preco: 50 },
+      sul: { nome: "Arquibancada Sul", preco: 50 },
+      leste: { nome: "Cadeira Leste", preco: 100 },
+      oeste: { nome: "Cadeira Oeste", preco: 100 }
+    };
 
-  useEffect(() => {
-    if (orderId) window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [orderId]);
+    let carrinho = [];
 
-  const addToCart = (sectorId) => {
-    const sector = SECTORS.find((s) => s.id === sectorId);
-    if (!sector) return;
-    setCart([{ ...sector, qty: 1 }]);
-    setShowPayment(true);
-  };
+    document.querySelectorAll("svg g").forEach(g => {
+      g.addEventListener("click", () => {
+        const id = g.dataset.id;
+        const setor = setores[id];
+        const existente = carrinho.find(i => i.id === id);
+        if (existente) existente.qtd++;
+        else carrinho.push({ id, nome: setor.nome, preco: setor.preco, qtd: 1 });
+        atualizarCarrinho();
+      });
+    });
 
-  const handleCheckout = (e) => {
-    e.preventDefault();
-    if (!buyer.fullName || !buyer.birth || !buyer.cpf || !buyer.ticketName) return alert("Preencha todos os campos.");
-    if (!validateCPF(buyer.cpf)) return alert("CPF inválido");
-    const id = "ING" + Math.random().toString(36).slice(2, 9).toUpperCase();
-    setOrderId(id);
-    setCart([]);
-    setSelected(null);
-    setShowPayment(false);
-    alert(`Compra simulada! Pedido ${id} — Enviamos o e-ticket para o e-mail cadastrado.`);
-  };
+    function atualizarCarrinho() {
+      const div = document.querySelector(".cart-items");
+      div.innerHTML = "";
+      let total = 0;
+      carrinho.forEach(item => {
+        total += item.preco * item.qtd;
+        const linha = document.createElement("div");
+        linha.innerHTML = `
+          <span>${item.nome} (x${item.qtd})</span>
+          <span>R$ ${(item.preco * item.qtd).toFixed(2)}</span>
+        `;
+        div.appendChild(linha);
+      });
+      document.getElementById("total").textContent = `R$ ${total.toFixed(2)}`;
+      document.getElementById("checkoutBtn").disabled = carrinho.length === 0;
+    }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white text-neutral-900 font-sans">
-      <header className="bg-black text-white py-4 shadow-md">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-white/10 grid place-items-center font-bold">CT</div>
-            <div>
-              <div className="text-sm opacity-90">Ingresso Oficial</div>
-              <div className="text-lg font-extrabold tracking-tight">{MATCH.home} x {MATCH.away}</div>
-            </div>
-          </div>
-          <div className="text-sm opacity-70">{new Date(MATCH.dateISO).toLocaleDateString('pt-BR')} — {MATCH.stadium}</div>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-[1fr,1.6fr,1fr] gap-8">
-        {/* Coluna esquerda */}
-        <motion.aside initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="space-y-6">
-          <div className="rounded-2xl border p-6 bg-white shadow-sm">
-            <h3 className="font-semibold text-lg">Seu nome</h3>
-            <input value={buyer.fullName} onChange={(e) => setBuyer({ ...buyer, fullName: e.target.value })} placeholder="Nome completo" className="mt-3 w-full rounded-lg border px-4 py-2" />
-            <p className="mt-3 text-sm text-neutral-600">Preencha seu nome — usado para contato.</p>
-          </div>
-          <div className="rounded-2xl border p-6 bg-white shadow-sm space-y-3">
-            <h4 className="font-semibold">Políticas do estádio</h4>
-            <ul className="text-sm text-neutral-700 space-y-2">
-              <li>• Proibida entrada com bebidas em vidro.</li>
-              <li>• Meia-entrada sujeita à comprovação.</li>
-              <li>• Organização pode realizar revista.</li>
-              <li>• Ingressos nominais — documento com foto.</li>
-            </ul>
-          </div>
-          <footer className="text-xs text-neutral-600 text-center mt-6">Compra segura desde 2021</footer>
-        </motion.aside>
-
-        {/* Mapa */}
-        <motion.section initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="rounded-3xl border bg-white p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-           
+    document.getElementById("checkoutForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const cpf = document.getElementById("cpf").value;
+      if (!/^\d{11}$/.test(cpf)) {
+        alert("CPF inválido! Digite 11 números.");
+        return;
+      }
+      document.getElementById("mensagem").innerHTML = `<p>Compra confirmada! 🎉<br>Obrigado, ${nome}. Seu ingresso foi enviado para o e-mail cadastrado.</p>`;
+      carrinho = [];
+      atualizarCarrinho();
+    });
+  </script>
+</body>
+</html>
