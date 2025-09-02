@@ -1,4 +1,3 @@
-<!-- ================== index.html ================== -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,149 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arena Corinthians - Ingressos</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+      overflow-x: hidden;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover { text-decoration: underline; }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+      position: relative;
+    }
+    .section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .btn-primary {
+      background: black;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .btn-primary:hover { background: #333; }
+    .cart-items div {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.4rem 0;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.4rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+    svg text {
+      font-size: 11px;
+      font-weight: 600;
+      fill: #000;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #000;
+      color: #fff;
+      margin-top: 2rem;
+    }
+    .footer-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .footer-info .selo {
+      width: 20px;
+      height: 20px;
+    }
+    section.page { display: none; animation: fadeIn 0.8s ease; }
+    section.page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Bola fazendo gol */
+    #goalAnimation {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      background: url('https://img.icons8.com/emoji/96/soccer-ball-emoji.png') no-repeat center/cover;
+      animation: goalAnim 2s ease forwards;
+      display: none;
+      z-index: 9999;
+    }
+    @keyframes goalAnim {
+      0% { top: -100px; }
+      70% { top: 60%; left: 50%; transform: translate(-50%, -50%) scale(1.3); }
+      100% { top: 80%; left: 90%; transform: translate(-50%, -50%) scale(0.8); }
+    }
+
+    /* Mascote correndo no carrinho */
+    .cart-mascot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .cart-mascot img {
+      width: 60px;
+      animation: wave 1s infinite alternate;
+      position: relative;
+    }
+    @keyframes wave {
+      0% { transform: translateX(0) rotate(-10deg); }
+      50% { transform: translateX(10px) rotate(10deg); }
+      100% { transform: translateX(0) rotate(-10deg); }
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Arena Corinthians</h1>
     <nav>
-      <a href="index.html">Início</a>
-      <a href="setores.html">Setores</a>
-      <a href="checkout.html">Checkout</a>
+      <a href="#" onclick="showPage('home')">Início</a>
+      <a href="#" onclick="showPage('setores')">Setores</a>
+      <a href="#" onclick="showPage('checkout')">Checkout</a>
     </nav>
   </header>
 
+  <div id="goalAnimation"></div>
+
   <main>
-    <section class="section">
+    <!-- Página inicial -->
+    <section id="home" class="section page active">
       <h2>Venda oficial de ingressos</h2>
       <p>Garanta já seu lugar na Neo Química Arena e viva essa experiência única!</p>
-      <a href="setores.html" class="btn-primary">Escolher meu setor</a>
+      <input type="text" id="nomeInicio" placeholder="Digite seu nome para começar">
+      <a href="#" class="btn-primary" onclick="startJourney()">Começar</a>
     </section>
-  </main>
 
-  <footer>
-    <div class="footer-info">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Seguro" class="selo">
-      <p>Site 100% seguro • No mercado desde 2021</p>
-    </div>
-    <p>© 2025 Arena Corinthians - Todos os direitos reservados.</p>
-  </footer>
-</body>
-</html>
-
-<!-- ================== setores.html ================== -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Setores - Arena Corinthians</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>Mapa da Neo Química Arena</h1>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="setores.html">Setores</a>
-      <a href="checkout.html">Checkout</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="section">
-      <svg viewBox="0 0 500 400" style="width:100%;max-width:700px;">
-        <!-- Norte -->
-        <g data-id="norte" data-preco="70" class="setor">
-          <rect x="200" y="20" width="100" height="30" fill="#60a5fa" />
-          <text x="250" y="40" text-anchor="middle">Setor Norte - R$70</text>
+    <!-- Página dos setores -->
+    <section id="setores" class="section page">
+      <h2>Mapa Realista da Neo Química Arena</h2>
+      <svg viewBox="0 0 800 500" style="width:100%;max-width:800px;">
+        <!-- Gramado -->
+        <rect x="150" y="120" width="500" height="260" rx="20" fill="#0F9D58"/>
+        <!-- Setores -->
+        <g class="setor" data-id="norte" data-preco="70">
+          <rect x="200" y="80" width="400" height="30" fill="#cce7ff"/>
+          <text x="400" y="100" text-anchor="middle">Arquibancada Norte - R$70</text>
         </g>
-        <!-- Sul -->
-        <g data-id="sul" data-preco="100" class="setor">
-          <rect x="200" y="330" width="100" height="30" fill="#4ade80" />
-          <text x="250" y="350" text-anchor="middle">Setor Sul - R$100</text>
+        <g class="setor" data-id="sul" data-preco="100">
+          <rect x="200" y="400" width="400" height="30" fill="#b3e6cc"/>
+          <text x="400" y="420" text-anchor="middle">Arquibancada Sul - R$100</text>
         </g>
-        <!-- Leste -->
-        <g data-id="leste-inferior" data-preco="200" class="setor">
-          <rect x="370" y="150" width="100" height="40" fill="#facc15" />
-          <text x="420" y="175" text-anchor="middle">Cadeira Leste Inf. - R$200</text>
+        <g class="setor" data-id="leste-inferior" data-preco="200">
+          <rect x="670" y="150" width="100" height="80" fill="#ffe680"/>
+          <text x="720" y="190" text-anchor="middle">Leste Inferior - R$200</text>
         </g>
-        <g data-id="leste-superior" data-preco="250" class="setor">
-          <rect x="370" y="100" width="100" height="40" fill="#eab308" />
-          <text x="420" y="125" text-anchor="middle">Cadeira Leste Sup. - R$250</text>
+        <g class="setor" data-id="leste-superior" data-preco="250">
+          <rect x="670" y="50" width="100" height="80" fill="#ffd633"/>
+          <text x="720" y="90" text-anchor="middle">Leste Superior - R$250</text>
         </g>
-        <!-- Oeste -->
-        <g data-id="oeste-inferior" data-preco="280" class="setor">
-          <rect x="30" y="150" width="100" height="40" fill="#f87171" />
-          <text x="80" y="175" text-anchor="middle">Cadeira Oeste Inf. - R$280</text>
+        <g class="setor" data-id="oeste-inferior" data-preco="280">
+          <rect x="30" y="150" width="100" height="80" fill="#ffb3b3"/>
+          <text x="80" y="190" text-anchor="middle">Oeste Inferior - R$280</text>
         </g>
-        <g data-id="oeste-superior" data-preco="320" class="setor">
-          <rect x="30" y="100" width="100" height="40" fill="#ef4444" />
-          <text x="80" y="125" text-anchor="middle">Cadeira Oeste Sup. - R$320</text>
+        <g class="setor" data-id="oeste-superior" data-preco="320">
+          <rect x="30" y="50" width="100" height="80" fill="#ff6666"/>
+          <text x="80" y="90" text-anchor="middle">Oeste Superior - R$320</text>
         </g>
-        <!-- Central -->
-        <g data-id="central" data-preco="400" class="setor">
-          <rect x="200" y="150" width="100" height="40" fill="#38bdf8" />
-          <text x="250" y="175" text-anchor="middle">Cadeira Central - R$400</text>
+        <g class="setor" data-id="central" data-preco="400">
+          <rect x="350" y="200" width="100" height="100" fill="#80d4ff"/>
+          <text x="400" y="250" text-anchor="middle">Central - R$400</text>
         </g>
-        <!-- Camarotes -->
-        <g data-id="camarote-leste" data-preco="600" class="setor">
-          <rect x="370" y="220" width="100" height="30" fill="#c084fc" />
-          <text x="420" y="240" text-anchor="middle">Camarote Leste - R$600</text>
+        <g class="setor" data-id="camarote-leste" data-preco="600">
+          <rect x="670" y="250" width="100" height="30" fill="#d9b3ff"/>
+          <text x="720" y="270" text-anchor="middle">Camarote Leste - R$600</text>
         </g>
-        <g data-id="camarote-oeste" data-preco="700" class="setor">
-          <rect x="30" y="220" width="100" height="30" fill="#a855f7" />
-          <text x="80" y="240" text-anchor="middle">Camarote Oeste - R$700</text>
+        <g class="setor" data-id="camarote-oeste" data-preco="700">
+          <rect x="30" y="250" width="100" height="30" fill="#b366ff"/>
+          <text x="80" y="270" text-anchor="middle">Camarote Oeste - R$700</text>
         </g>
-        <g data-id="camarote-vip" data-preco="832" class="setor">
-          <rect x="200" y="220" width="100" height="40" fill="#9333ea" />
-          <text x="250" y="245" text-anchor="middle">Camarote VIP - R$832</text>
+        <g class="setor" data-id="camarote-vip" data-preco="832">
+          <rect x="350" y="310" width="100" height="40" fill="#6600cc"/>
+          <text x="400" y="335" text-anchor="middle" fill="#fff">Camarote VIP - R$832</text>
         </g>
       </svg>
+
       <p>Clique no setor para adicionar ao carrinho.</p>
 
       <h3>Carrinho</h3>
       <div class="cart-items"></div>
+      <div class="cart-mascot">
+        <img src="https://img.icons8.com/emoji/96/soccer-ball-emoji.png" alt="Mascote bola" />
+        <span>Bola está te dando tchau! 👋</span>
+      </div>
       <p><strong>Total:</strong> <span id="total">R$ 0,00</span></p>
-      <a href="checkout.html" class="btn-primary">Ir para pagamento</a>
+      <a href="#" class="btn-primary" onclick="showPage('checkout')">Ir para pagamento</a>
     </section>
-  </main>
 
-  <footer>
-    <div class="footer-info">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Seguro" class="selo">
-      <p>Site 100% seguro • No mercado desde 2021</p>
-    </div>
-    <p>© 2025 Arena Corinthians</p>
-  </footer>
-  <script src="app.js"></script>
-</body>
-</html>
-
-<!-- ================== checkout.html ================== -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - Arena Corinthians</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>Finalizar Compra</h1>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="setores.html">Setores</a>
-      <a href="checkout.html">Checkout</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="section">
-      <h2>Seus ingressos</h2>
+    <!-- Página checkout -->
+    <section id="checkout" class="section page">
+      <h2>Finalizar Compra</h2>
       <div class="cart-items"></div>
       <p><strong>Total:</strong> <span id="total">R$ 0,00</span></p>
 
@@ -173,174 +241,101 @@
       <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Seguro" class="selo">
       <p>Site 100% seguro • No mercado desde 2021</p>
     </div>
-    <p>© 2025 Arena Corinthians</p>
+    <p>© 2025 Arena Corinthians - Todos os direitos reservados.</p>
   </footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js"></script>
+  <script>
+    let cart = [];
+
+    function showPage(id) {
+      document.querySelectorAll("section.page").forEach(p => p.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      updateCart();
+    }
+
+    function startJourney() {
+      const nome = document.getElementById("nomeInicio").value.trim();
+      if (!nome) { alert("Digite seu nome!"); return; }
+      triggerGoalAnimation();
+      setTimeout(() => showPage('setores'), 2000);
+    }
+
+    function triggerGoalAnimation() {
+      const goal = document.getElementById("goalAnimation");
+      goal.style.display = "block";
+      setTimeout(() => goal.style.display = "none", 2500);
+    }
+
+    function updateCart() {
+      document.querySelectorAll(".cart-items").forEach(cartContainer => {
+        cartContainer.innerHTML = "";
+        let total = 0;
+        cart.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.innerHTML = `${item.nome} - R$ ${item.preco.toFixed(2)} <button onclick="removeItem(${index})">Remover</button>`;
+          cartContainer.appendChild(div);
+          total += item.preco;
+        });
+        document.querySelectorAll("#total").forEach(el => el.textContent = `R$ ${total.toFixed(2)}`);
+      });
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".setor").forEach(setor => {
+        setor.addEventListener("click", () => {
+          const nome = setor.querySelector("text").textContent;
+          const preco = parseFloat(setor.getAttribute("data-preco"));
+          cart.push({ nome, preco });
+          updateCart();
+          triggerMascotRun();
+        });
+      });
+
+      function triggerMascotRun() {
+        const mascot = document.querySelector(".cart-mascot img");
+        mascot.style.animation = "wave 0.5s infinite alternate";
+        setTimeout(() => { mascot.style.animation = "wave 1s infinite alternate"; }, 500);
+      }
+
+      const checkoutForm = document.getElementById("checkoutForm");
+      checkoutForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const nome = document.getElementById("nome").value;
+        const cpf = document.getElementById("cpf").value;
+        const email = document.getElementById("email").value;
+        if (cpf.length !== 11 || isNaN(cpf)) { alert("CPF inválido!"); return; }
+        if (!email.includes("@")) { alert("E-mail inválido!"); return; }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text("Ingresso - Neo Química Arena", 20, 20);
+        doc.text("Nome: " + nome, 20, 30);
+        doc.text("CPF: " + cpf, 20, 40);
+        doc.text("E-mail: " + email, 20, 50);
+        doc.text("Setores:", 20, 60);
+        let y = 70;
+        cart.forEach(item => { doc.text(`${item.nome} - R$ ${item.preco.toFixed(2)}`, 20, y); y+=10; });
+
+        const qrDiv = document.createElement("div");
+        new QRCode(qrDiv, { text: nome+cpf+email, width: 100, height: 100 });
+        setTimeout(() => {
+          const qrImg = qrDiv.querySelector("img");
+          if (qrImg) doc.addImage(qrImg.src, "PNG", 150, 20, 50, 50);
+          doc.save("ingresso.pdf");
+        }, 500);
+
+        document.getElementById("mensagem").innerHTML = `<p>Obrigado, <strong>${nome}</strong>! Seu ingresso foi gerado em PDF.</p>`;
+        cart = [];
+        updateCart();
+      });
+    });
+  </script>
 </body>
 </html>
-
-<!-- ================== styles.css ================== -->
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background: #f7f7f7;
-}
-header {
-  background: #000;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-nav a {
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
-nav a:hover { text-decoration: underline; }
-main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 1rem;
-}
-.section {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.btn-primary {
-  background: black;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  display: inline-block;
-  cursor: pointer;
-  font-weight: 600;
-}
-.btn-primary:hover { background: #333; }
-.cart-items div {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.4rem 0;
-}
-input, select {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.4rem 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
-}
-svg text {
-  font-size: 11px;
-  font-weight: 600;
-}
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #000;
-  color: #fff;
-  margin-top: 2rem;
-}
-.footer-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-.footer-info .selo {
-  width: 20px;
-  height: 20px;
-}
-
-<!-- ================== app.js ================== -->
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function updateCart() {
-  const cartContainer = document.querySelector(".cart-items");
-  const totalElement = document.getElementById("total");
-  if (!cartContainer || !totalElement) return;
-
-  cartContainer.innerHTML = "";
-  let total = 0;
-  cart.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.innerHTML = `${item.nome} - R$ ${item.preco.toFixed(2)} 
-      <button onclick="removeItem(${index})">Remover</button>`;
-    cartContainer.appendChild(div);
-    total += item.preco;
-  });
-  totalElement.textContent = `R$ ${total.toFixed(2)}`;
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-function removeItem(index) {
-  cart.splice(index, 1);
-  updateCart();
-}
-
-document.querySelectorAll(".setor").forEach(setor => {
-  setor.addEventListener("click", () => {
-    const nome = setor.querySelector("text").textContent;
-    const preco = parseFloat(setor.getAttribute("data-preco"));
-    cart.push({ nome, preco });
-    updateCart();
-    alert(`${nome} adicionado ao carrinho!`);
-  });
-});
-
-const checkoutForm = document.getElementById("checkoutForm");
-if (checkoutForm) {
-  checkoutForm.addEventListener("submit", e => {
-    e.preventDefault();
-    const nome = document.getElementById("nome").value;
-    const cpf = document.getElementById("cpf").value;
-    const email = document.getElementById("email").value;
-
-    if (cpf.length !== 11 || isNaN(cpf)) {
-      alert("CPF inválido!");
-      return;
-    }
-    if (!email.includes("@")) {
-      alert("E-mail inválido!");
-      return;
-    }
-
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.text("Ingresso - Neo Química Arena", 20, 20);
-    doc.text("Nome: " + nome, 20, 30);
-    doc.text("CPF: " + cpf, 20, 40);
-    doc.text("E-mail: " + email, 20, 50);
-    doc.text("Setores:", 20, 60);
-
-    let y = 70;
-    cart.forEach(item => {
-      doc.text(`${item.nome} - R$ ${item.preco.toFixed(2)}`, 20, y);
-      y += 10;
-    });
-
-    const qrDiv = document.createElement("div");
-    new QRCode(qrDiv, { text: nome + cpf + email, width: 100, height: 100 });
-    setTimeout(() => {
-      const qrImg = qrDiv.querySelector("img");
-      if (qrImg) {
-        doc.addImage(qrImg.src, "PNG", 150, 20, 50, 50);
-      }
-      doc.save("ingresso.pdf");
-    }, 500);
-
-    document.getElementById("mensagem").innerHTML =
-      `<p>Obrigado, <strong>${nome}</strong>! Seu ingresso foi gerado em PDF.</p>`;
-    cart = [];
-    updateCart();
-    localStorage.removeItem("cart");
-  });
-}
-
-updateCart();
