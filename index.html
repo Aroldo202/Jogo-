@@ -13,7 +13,7 @@
       overflow-x: hidden;
     }
 
-    /* Fundo animado com árvores e bolinhas douradas */
+    /* Fundo sofisticado com árvores flutuantes e bolinhas douradas */
     .floating-bg {
       position: fixed;
       width: 100%;
@@ -27,26 +27,33 @@
 
     .tree, .ball {
       position: absolute;
-      opacity: 0.7;
-      animation: float 20s linear infinite;
+      opacity: 0.75;
+      animation: float linear infinite;
     }
 
     .tree {
-      width: 60px;
-      height: 60px;
-      background: url("https://i.ibb.co/6JQxFKT/tree-icon.png") no-repeat center/contain;
+      width: 50px;
+      height: 50px;
+      background: url("https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg") no-repeat center/contain;
+      animation: floatVertical linear infinite, floatHorizontal ease-in-out infinite alternate;
     }
 
     .ball {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: radial-gradient(circle, gold, #b45309);
       border-radius: 50%;
+      animation: float linear infinite;
     }
 
-    @keyframes float {
+    @keyframes floatVertical {
       from { transform: translateY(100vh) rotate(0deg); }
       to { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    @keyframes floatHorizontal {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(20px); }
     }
 
     footer {
@@ -56,14 +63,25 @@
 </head>
 <body class="relative">
 
-  <!-- Fundo com árvores e bolinhas -->
+  <!-- Fundo com árvores flutuantes e bolinhas douradas -->
   <div class="floating-bg">
-    <div class="tree" style="left:10%; animation-duration:18s;"></div>
-    <div class="tree" style="left:40%; animation-duration:25s;"></div>
-    <div class="tree" style="left:70%; animation-duration:22s;"></div>
-    <div class="ball" style="left:20%; animation-duration:15s;"></div>
-    <div class="ball" style="left:50%; animation-duration:19s;"></div>
-    <div class="ball" style="left:80%; animation-duration:17s;"></div>
+    <!-- Árvores flutuantes -->
+    <div class="tree" style="left:5%; animation-duration:20s, 6s;"></div>
+    <div class="tree" style="left:15%; animation-duration:22s, 5s;"></div>
+    <div class="tree" style="left:30%; animation-duration:25s, 7s;"></div>
+    <div class="tree" style="left:45%; animation-duration:20s, 6s;"></div>
+    <div class="tree" style="left:60%; animation-duration:23s, 8s;"></div>
+    <div class="tree" style="left:75%; animation-duration:19s, 5s;"></div>
+    <div class="tree" style="left:85%; animation-duration:21s, 7s;"></div>
+    <div class="tree" style="left:95%; animation-duration:24s, 6s;"></div>
+
+    <!-- Bolinhas douradas -->
+    <div class="ball" style="left:10%; animation-duration:15s;"></div>
+    <div class="ball" style="left:25%; animation-duration:18s;"></div>
+    <div class="ball" style="left:40%; animation-duration:17s;"></div>
+    <div class="ball" style="left:55%; animation-duration:21s;"></div>
+    <div class="ball" style="left:70%; animation-duration:16s;"></div>
+    <div class="ball" style="left:90%; animation-duration:20s;"></div>
   </div>
 
   <header class="relative z-10 text-center py-10">
@@ -73,9 +91,9 @@
 
   <main class="relative z-10 container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
 
-    <!-- Produtos -->
+    <!-- Árvores Verdes -->
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://i.ibb.co/Xzz9pRk/arvore-verde-120.jpg" alt="Árvore Verde 1,20m" class="w-full h-64 object-cover">
+      <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 1,20m" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Verde 1,20m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 70,00</p>
@@ -84,7 +102,7 @@
     </div>
 
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://i.ibb.co/ZWyxK6g/arvore-verde-180.jpg" alt="Árvore Verde 1,80m" class="w-full h-64 object-cover">
+      <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 1,80m" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Verde 1,80m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
@@ -93,7 +111,7 @@
     </div>
 
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://i.ibb.co/LdxdJjR/arvore-verde-210.jpg" alt="Árvore Verde 2,10m" class="w-full h-64 object-cover">
+      <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 2,10m" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Verde 2,10m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 134,90</p>
@@ -101,8 +119,9 @@
       </div>
     </div>
 
+    <!-- Árvores Brancas -->
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://i.ibb.co/Y3NG1gC/arvore-branca-140.jpg" alt="Árvore Branca 1,40m" class="w-full h-64 object-cover">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 1,40m" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Branca 1,40m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
@@ -111,7 +130,7 @@
     </div>
 
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://i.ibb.co/6P8H5Wj/arvore-branca-180.jpg" alt="Árvore Branca 1,80m" class="w-full h-64 object-cover">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 1,80m" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Branca 1,80m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 115,00</p>
@@ -120,7 +139,7 @@
     </div>
 
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://i.ibb.co/zJY5ZB9/arvore-branca-215.jpg" alt="Árvore Branca 2,15m" class="w-full h-64 object-cover">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 2,15m" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Branca 2,15m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 153,90</p>
@@ -128,18 +147,20 @@
       </div>
     </div>
 
+    <!-- Árvore Decorada -->
     <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden md:col-span-3">
-      <img src="https://i.ibb.co/Fz7Mcy5/arvore-decorada-dourada.jpg" alt="Árvore Branca Decorada" class="w-full h-64 object-cover">
+      <img src="https://static.stealthelook.com.br/wp-content/uploads/2022/11/rebecca-taig-pinterest-decoracao-natalina-arvore-de-natal-branca.jpeg" alt="Árvore Branca Decorada" class="w-full h-64 object-cover">
       <div class="p-4">
         <h2 class="text-xl font-bold">Árvore Branca com Decoração Dourada</h2>
         <p class="mt-2 text-lg font-semibold">R$ 253,90</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0GA7" target="_blank" class="block mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
+
   </main>
 
   <footer class="relative z-10 text-center py-6 mt-10">
-    <p class="text-sm">🌟 Since 2021</p>
+    <p class="text-sm">🌟 Desde 2021</p>
     <p class="text-sm">🔒 Site 100% seguro</p>
     <p class="text-sm">🚚 Entregamos em todo o Brasil</p>
   </footer>
