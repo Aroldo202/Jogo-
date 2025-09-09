@@ -13,7 +13,6 @@
       overflow-x: hidden;
     }
 
-    /* Fundo sofisticado com árvores flutuantes em camadas (parallax) */
     .floating-bg {
       position: fixed;
       width: 100%;
@@ -31,7 +30,6 @@
       border-radius: 10%;
     }
 
-    /* Camadas das árvores (parallax) */
     .tree.far { width: 30px; height: 30px; animation: floatVerticalFar linear infinite, floatHorizontalFar ease-in-out infinite alternate; }
     .tree.mid { width: 50px; height: 50px; animation: floatVerticalMid linear infinite, floatHorizontalMid ease-in-out infinite alternate; }
     .tree.near { width: 70px; height: 70px; animation: floatVerticalNear linear infinite, floatHorizontalNear ease-in-out infinite alternate; }
@@ -40,12 +38,10 @@
     .ball.mid { width: 16px; height: 16px; animation: floatVerticalMid linear infinite; background: radial-gradient(circle, gold, #b45309); }
     .ball.near { width: 20px; height: 20px; animation: floatVerticalNear linear infinite; background: radial-gradient(circle, gold, #b45309); }
 
-    /* Animações verticais */
     @keyframes floatVerticalFar { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
     @keyframes floatVerticalMid { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
     @keyframes floatVerticalNear { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
 
-    /* Animações horizontais suaves (parallax) */
     @keyframes floatHorizontalFar { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
     @keyframes floatHorizontalMid { 0% { transform: translateX(0); } 100% { transform: translateX(15px); } }
     @keyframes floatHorizontalNear { 0% { transform: translateX(0); } 100% { transform: translateX(20px); } }
@@ -55,21 +51,14 @@
 </head>
 <body class="relative">
 
-  <!-- Fundo com árvores flutuantes em parallax -->
+  <!-- Fundo parallax -->
   <div class="floating-bg">
-    <!-- Árvores Far (distantes) -->
     <div class="tree far" style="left:5%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
     <div class="tree far" style="left:25%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
-
-    <!-- Árvores Mid (médias) -->
     <div class="tree mid" style="left:40%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
     <div class="tree mid" style="left:60%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
-
-    <!-- Árvores Near (próximas) -->
     <div class="tree near" style="left:75%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
     <div class="tree near" style="left:90%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
-
-    <!-- Bolinhas douradas em camadas -->
     <div class="ball far" style="left:10%;"></div>
     <div class="ball mid" style="left:35%;"></div>
     <div class="ball near" style="left:55%;"></div>
@@ -93,7 +82,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Verde 1,20m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 70,00</p>
-        <p class="mt-1 text-sm text-gray-700">Árvore com 1 metro e 20 centímetros contendo 623 galhos verdes</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 1,20 m de altura, contendo 623 galhos verdes. Ideal para decorar sua sala com elegância.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0G8T" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
@@ -105,7 +94,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Verde 1,80m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
-        <p class="mt-1 text-sm text-gray-700">Árvore com 1 metro e 80 centímetros contendo 832 galhos verdes</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 1,80 m de altura, contendo 832 galhos verdes. Perfeita para ambientes médios.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0G90" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
@@ -117,7 +106,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Verde 2,10m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 134,90</p>
-        <p class="mt-1 text-sm text-gray-700">Árvore com 2 metros e 10 centímetros contendo 1.153 galhos verdes</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 2,10 m de altura, contendo 1.153 galhos verdes. Ideal para quem busca imponência e sofisticação.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0G92" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
@@ -130,7 +119,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca 1,40m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
-        <p class="mt-1 text-sm text-gray-700">1 metro e 40 centímetros contendo 735 galhos brancos</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 1,40 m de altura, contendo 735 galhos brancos. Elegante e moderna, perfeita para ambientes compactos.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0G9P" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
@@ -142,7 +131,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca 1,80m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 115,00</p>
-        <p class="mt-1 text-sm text-gray-700">1 metro e 80 centímetros contendo 933 galhos brancos</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 1,80 m de altura, contendo 933 galhos brancos. Sofisticada e perfeita para salas de tamanho médio.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0G9T" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
@@ -154,7 +143,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca 2,10m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 153,90</p>
-        <p class="mt-1 text-sm text-gray-700">2 metros e 10 centímetros contendo 1.323 galhos brancos</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 2,10 m de altura, contendo 1.323 galhos brancos. Ideal para quem deseja grande impacto visual.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0GA2" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
@@ -167,7 +156,7 @@
       <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca com Decoração Dourada</h2>
         <p class="mt-2 text-lg font-semibold">R$ 253,90</p>
-        <p class="mt-1 text-sm text-gray-700">2 metros e 20 centímetros contendo 1.764 galhos brancos e decoração dourada conforme a foto</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 2,20 m de altura, contendo 1.764 galhos brancos e decoração dourada, conforme exibido na foto. Ideal para uma decoração natalina sofisticada.</p>
         <a href="https://go.perfectpay.com.br/PPU38CQ0GA7" target="_blank" class="mt-auto block bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
