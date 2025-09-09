@@ -13,7 +13,7 @@
       overflow-x: hidden;
     }
 
-    /* Fundo sofisticado com árvores flutuantes e bolinhas douradas */
+    /* Fundo sofisticado com árvores flutuantes em camadas (parallax) */
     .floating-bg {
       position: fixed;
       width: 100%;
@@ -28,60 +28,54 @@
     .tree, .ball {
       position: absolute;
       opacity: 0.75;
-      animation: float linear infinite;
+      border-radius: 10%;
     }
 
-    .tree {
-      width: 50px;
-      height: 50px;
-      background: url("https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg") no-repeat center/contain;
-      animation: floatVertical linear infinite, floatHorizontal ease-in-out infinite alternate;
-    }
+    /* Camadas das árvores (parallax) */
+    .tree.far { width: 30px; height: 30px; animation: floatVerticalFar linear infinite, floatHorizontalFar ease-in-out infinite alternate; }
+    .tree.mid { width: 50px; height: 50px; animation: floatVerticalMid linear infinite, floatHorizontalMid ease-in-out infinite alternate; }
+    .tree.near { width: 70px; height: 70px; animation: floatVerticalNear linear infinite, floatHorizontalNear ease-in-out infinite alternate; }
 
-    .ball {
-      width: 18px;
-      height: 18px;
-      background: radial-gradient(circle, gold, #b45309);
-      border-radius: 50%;
-      animation: float linear infinite;
-    }
+    .ball.far { width: 12px; height: 12px; animation: floatVerticalFar linear infinite; background: radial-gradient(circle, gold, #b45309); }
+    .ball.mid { width: 16px; height: 16px; animation: floatVerticalMid linear infinite; background: radial-gradient(circle, gold, #b45309); }
+    .ball.near { width: 20px; height: 20px; animation: floatVerticalNear linear infinite; background: radial-gradient(circle, gold, #b45309); }
 
-    @keyframes floatVertical {
-      from { transform: translateY(100vh) rotate(0deg); }
-      to { transform: translateY(-10vh) rotate(360deg); }
-    }
+    /* Animações verticais */
+    @keyframes floatVerticalFar { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
+    @keyframes floatVerticalMid { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
+    @keyframes floatVerticalNear { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
 
-    @keyframes floatHorizontal {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(20px); }
-    }
+    /* Animações horizontais suaves (parallax) */
+    @keyframes floatHorizontalFar { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
+    @keyframes floatHorizontalMid { 0% { transform: translateX(0); } 100% { transform: translateX(15px); } }
+    @keyframes floatHorizontalNear { 0% { transform: translateX(0); } 100% { transform: translateX(20px); } }
 
-    footer {
-      background: #111827;
-    }
+    footer { background: #111827; }
   </style>
 </head>
 <body class="relative">
 
-  <!-- Fundo com árvores flutuantes e bolinhas douradas -->
+  <!-- Fundo com árvores flutuantes em parallax -->
   <div class="floating-bg">
-    <!-- Árvores flutuantes -->
-    <div class="tree" style="left:5%; animation-duration:20s, 6s;"></div>
-    <div class="tree" style="left:15%; animation-duration:22s, 5s;"></div>
-    <div class="tree" style="left:30%; animation-duration:25s, 7s;"></div>
-    <div class="tree" style="left:45%; animation-duration:20s, 6s;"></div>
-    <div class="tree" style="left:60%; animation-duration:23s, 8s;"></div>
-    <div class="tree" style="left:75%; animation-duration:19s, 5s;"></div>
-    <div class="tree" style="left:85%; animation-duration:21s, 7s;"></div>
-    <div class="tree" style="left:95%; animation-duration:24s, 6s;"></div>
+    <!-- Árvores Far (distantes) -->
+    <div class="tree far" style="left:5%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree far" style="left:25%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
 
-    <!-- Bolinhas douradas -->
-    <div class="ball" style="left:10%; animation-duration:15s;"></div>
-    <div class="ball" style="left:25%; animation-duration:18s;"></div>
-    <div class="ball" style="left:40%; animation-duration:17s;"></div>
-    <div class="ball" style="left:55%; animation-duration:21s;"></div>
-    <div class="ball" style="left:70%; animation-duration:16s;"></div>
-    <div class="ball" style="left:90%; animation-duration:20s;"></div>
+    <!-- Árvores Mid (médias) -->
+    <div class="tree mid" style="left:40%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree mid" style="left:60%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+
+    <!-- Árvores Near (próximas) -->
+    <div class="tree near" style="left:75%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree near" style="left:90%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+
+    <!-- Bolinhas douradas em camadas -->
+    <div class="ball far" style="left:10%;"></div>
+    <div class="ball mid" style="left:35%;"></div>
+    <div class="ball near" style="left:55%;"></div>
+    <div class="ball mid" style="left:70%;"></div>
+    <div class="ball far" style="left:85%;"></div>
+    <div class="ball near" style="left:95%;"></div>
   </div>
 
   <header class="relative z-10 text-center py-10">
@@ -92,68 +86,82 @@
   <main class="relative z-10 container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
 
     <!-- Árvores Verdes -->
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 1,20m" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 1,20m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Verde 1,20m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 70,00</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0G8T" target="_blank" class="block mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G8T" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 1,80m" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 1,80m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Verde 1,80m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0G90" target="_blank" class="block mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G90" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 2,10m" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://cdn.awsli.com.br/600x450/1929/1929942/produto/1211558552d06d6d3f7.jpg" alt="Árvore Verde 2,10m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Verde 2,10m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 134,90</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0G92" target="_blank" class="block mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G92" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
     <!-- Árvores Brancas -->
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 1,40m" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 1,40m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca 1,40m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0G9P" target="_blank" class="block mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G9P" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 1,80m" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 1,80m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca 1,80m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 115,00</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0G9T" target="_blank" class="block mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G9T" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 2,15m" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXGxW4j0F-dC_tMhtl7_zgxo-OaBTRW3fN9w&s" alt="Árvore Branca 2,15m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca 2,15m</h2>
         <p class="mt-2 text-lg font-semibold">R$ 153,90</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0GA2" target="_blank" class="block mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0GA2" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
     <!-- Árvore Decorada -->
-    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden md:col-span-3">
-      <img src="https://static.stealthelook.com.br/wp-content/uploads/2022/11/rebecca-taig-pinterest-decoracao-natalina-arvore-de-natal-branca.jpeg" alt="Árvore Branca Decorada" class="w-full h-64 object-cover">
-      <div class="p-4">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden md:col-span-3 flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://static.stealthelook.com.br/wp-content/uploads/2022/11/rebecca-taig-pinterest-decoracao-natalina-arvore-de-natal-branca.jpeg" alt="Árvore Branca Decorada" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
         <h2 class="text-xl font-bold">Árvore Branca com Decoração Dourada</h2>
         <p class="mt-2 text-lg font-semibold">R$ 253,90</p>
-        <a href="https://go.perfectpay.com.br/PPU38CQ0GA7" target="_blank" class="block mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0GA7" target="_blank" class="mt-auto block bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
       </div>
     </div>
 
@@ -164,5 +172,6 @@
     <p class="text-sm">🔒 Site 100% seguro</p>
     <p class="text-sm">🚚 Entregamos em todo o Brasil</p>
   </footer>
+
 </body>
 </html>
