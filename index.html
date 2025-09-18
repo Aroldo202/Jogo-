@@ -1,180 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja de Árvores de Natal</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: #006400;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 30px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: scale(1.02);
-    }
-    .card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 15px;
-      flex-grow: 1;
-    }
-    .card-content h3 {
-      margin: 0 0 10px;
-      color: #006400;
-    }
-    .card-content p {
-      margin: 5px 0;
-      font-size: 0.95rem;
-    }
-    .card-content strong {
-      display: block;
-      margin-top: 10px;
-      font-size: 1.1rem;
-    }
-    .comprar {
-      display: block;
-      text-align: center;
-      margin: 15px;
-      padding: 12px;
-      background: #ff0000;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    .comprar:hover {
-      background: #cc0000;
-    }
-    footer {
-      background: #006400;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árvores de Natal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            width: 300px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+        .product h3 {
+            margin: 15px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .product p {
+            margin: 0 15px 15px;
+            color: #555;
+        }
+        .product a {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .product a:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>🎄 Loja de Árvores de Natal 🎄</h1>
-    <p>Encontre a árvore perfeita para o seu Natal!</p>
-  </header>
 
-  <main class="produtos">
-    <!-- Produto 1 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1608889177911-8e25a5f5c5c4?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Verde 1,20m">
-      <div class="card-content">
+<header>
+    <h1>Árvores de Natal Disponíveis</h1>
+</header>
+
+<div class="container">
+    <!-- Árvores de Natal -->
+    <div class="product">
+        <img src="https://www.super25.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Verde 1,20m">
         <h3>Árvore Verde 1,20m</h3>
-        <p>Árvore de 1 metro e 20 centímetros contendo 623 galhos verdes.</p>
-        <strong>R$ 199,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0G8T" class="comprar">Comprar</a>
+        <p>Pinheiro Monaco com 720 galhos cheios.</p>
+        <a href="https://www.super25.com.br/casa-e-decoracao/arvore-de-natal-verde-grande-luxo-720-galhos-cheia-pinheiro-monaco-1-80-metro-decorada">Comprar</a>
     </div>
 
-    <!-- Produto 2 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1607083208840-9d6c94632b42?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Verde 1,80m">
-      <div class="card-content">
+    <div class="product">
+        <img src="https://www.verytel.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Verde 1,80m">
         <h3>Árvore Verde 1,80m</h3>
-        <p>Árvore de 1 metro e 80 centímetros contendo 832 galhos verdes.</p>
-        <strong>R$ 299,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0G90" class="comprar">Comprar</a>
+        <p>Modelo Dupla com 661 galhos.</p>
+        <a href="https://www.verytel.com.br/arvore-de-natal-dupla-de-1-80-metros">Comprar</a>
     </div>
 
-    <!-- Produto 3 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1607472589424-3c4a5c87a1f6?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Verde 2,10m">
-      <div class="card-content">
+    <div class="product">
+        <img src="https://www.magazinetotaldecor.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Verde 2,10m">
         <h3>Árvore Verde 2,10m</h3>
-        <p>Árvore de 2 metros e 10 centímetros contendo 950 galhos verdes.</p>
-        <strong>R$ 399,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0G92" class="comprar">Comprar</a>
+        <p>Pinheiro com 1784 galhos.</p>
+        <a href="https://www.magazinetotaldecor.com.br/natal/arvores/arvore-de-natal-2-10m-pineiro-maior-quant-de-galhos-1784-galhos">Comprar</a>
     </div>
 
-    <!-- Produto 4 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1544207240-5c448f94c037?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Branca 1,40m">
-      <div class="card-content">
+    <div class="product">
+        <img src="https://www.magazinetotaldecor.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Branca 1,40m">
         <h3>Árvore Branca 1,40m</h3>
-        <p>Árvore de 1 metro e 40 centímetros com 750 galhos brancos.</p>
-        <strong>R$ 249,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0G9P" class="comprar">Comprar</a>
+        <p>Modelo Nevada com 468 galhos.</p>
+        <a href="https://www.magazinetotaldecor.com.br/natal/arvores-de-natal/arvore-de-natal-nevada-luxo-1-50-cm-468-galhos">Comprar</a>
     </div>
 
-    <!-- Produto 5 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Branca 1,80m">
-      <div class="card-content">
+    <div class="product">
+        <img src="https://www.atacadistasonline.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Branca 1,80m">
         <h3>Árvore Branca 1,80m</h3>
-        <p>Árvore de 1 metro e 80 centímetros com 832 galhos brancos.</p>
-        <strong>R$ 349,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0G9T" class="comprar">Comprar</a>
+        <p>Modelo Alpina com 600 galhos.</p>
+        <a href="https://www.atacadistasonline.com.br/natal/arvore-de-natal/arvore-alpina-verde-nevada-c-600-galhos-1-80-m-magizi">Comprar</a>
     </div>
 
-    <!-- Produto 6 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1513791050722-74d8e5f6d77b?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Branca 2,10m">
-      <div class="card-content">
+    <div class="product">
+        <img src="https://sumagazine.mercadoshops.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Branca 2,10m">
         <h3>Árvore Branca 2,10m</h3>
-        <p>Árvore de 2 metros e 10 centímetros com 950 galhos brancos.</p>
-        <strong>R$ 449,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0GA2" class="comprar">Comprar</a>
+        <p>Pinheiro Nevado com pinhas.</p>
+        <a href="https://sumagazine.mercadoshops.com.br/MLB-2003561175-arvore-de-natal-pinheiro-nevado-luxo-c-pinhas-210-metros-_JM">Comprar</a>
     </div>
+</div>
 
-    <!-- Produto 7 -->
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1607532941433-6d32f4745a96?auto=format&fit=crop&w=800&q=80" alt="Árvore de Natal Branca Decorada">
-      <div class="card-content">
-        <h3>Árvore Branca Decorada</h3>
-        <p>Árvore decorada com luzes de LED e enfeites natalinos prontos para uso.</p>
-        <strong>R$ 599,90</strong>
-      </div>
-      <a href="https://go.perfectpay.com.br/PPU38CQ0GA7" class="comprar">Comprar</a>
-    </div>
-  </main>
-
-  <footer>
-    <p>© 2025 Loja de Árvores de Natal - Todos os direitos reservados.</p>
-  </footer>
 </body>
 </html>
