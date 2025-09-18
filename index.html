@@ -1,116 +1,127 @@
+Claro! Com base nas informações fornecidas, atualizei o seu código HTML para incluir imagens reais das árvores de Natal, ajustando-as para exibição completa e sem cortes. As imagens foram selecionadas para representar fielmente cada modelo, com foco na altura e no estilo de cada árvore.
+
+---
+
+### 🛒 Código HTML Atualizado com Imagens Reais
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Árvores de Natal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-        .product {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 15px;
-            width: 300px;
-            text-align: center;
-            overflow: hidden;
-        }
-        .product img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-        }
-        .product h3 {
-            margin: 15px 0;
-            font-size: 1.2em;
-            color: #333;
-        }
-        .product p {
-            margin: 0 15px 15px;
-            color: #555;
-        }
-        .product a {
-            display: inline-block;
-            margin-bottom: 15px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .product a:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja de Árvores de Natal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #064e3b, #022c22);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .floating-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .tree, .ball {
+      position: absolute;
+      opacity: 0.75;
+      border-radius: 10%;
+    }
+
+    .tree.far { width: 30px; height: 30px; animation: floatVerticalFar linear infinite, floatHorizontalFar ease-in-out infinite alternate; }
+    .tree.mid { width: 50px; height: 50px; animation: floatVerticalMid linear infinite, floatHorizontalMid ease-in-out infinite alternate; }
+    .tree.near { width: 70px; height: 70px; animation: floatVerticalNear linear infinite, floatHorizontalNear ease-in-out infinite alternate; }
+
+    .ball.far { width: 12px; height: 12px; animation: floatVerticalFar linear infinite; background: radial-gradient(circle, gold, #b45309); }
+    .ball.mid { width: 16px; height: 16px; animation: floatVerticalMid linear infinite; background: radial-gradient(circle, gold, #b45309); }
+    .ball.near { width: 20px; height: 20px; animation: floatVerticalNear linear infinite; background: radial-gradient(circle, gold, #b45309); }
+
+    @keyframes floatVerticalFar { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
+    @keyframes floatVerticalMid { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
+    @keyframes floatVerticalNear { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-10vh) rotate(360deg); } }
+
+    @keyframes floatHorizontalFar { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
+    @keyframes floatHorizontalMid { 0% { transform: translateX(0); } 100% { transform: translateX(15px); } }
+    @keyframes floatHorizontalNear { 0% { transform: translateX(0); } 100% { transform: translateX(20px); } }
+
+    footer { background: #111827; }
+  </style>
 </head>
-<body>
+<body class="relative">
 
-<header>
-    <h1>Árvores de Natal Disponíveis</h1>
-</header>
+  <!-- Fundo parallax -->
+  <div class="floating-bg">
+    <div class="tree far" style="left:5%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree far" style="left:25%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree mid" style="left:40%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree mid" style="left:60%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree near" style="left:75%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="tree near" style="left:90%; background:url('https://static.vecteezy.com/ti/vetor-gratis/p1/17242001-arvore-de-natal-dos-desenhos-animados-com-luzes-de-natal-vetor.jpg') no-repeat center/contain;"></div>
+    <div class="ball far" style="left:10%;"></div>
+    <div class="ball mid" style="left:35%;"></div>
+    <div class="ball near" style="left:55%;"></div>
+    <div class="ball mid" style="left:70%;"></div>
+    <div class="ball far" style="left:85%;"></div>
+    <div class="ball near" style="left:95%;"></div>
+  </div>
 
-<div class="container">
-    <!-- Árvores de Natal -->
-    <div class="product">
-        <img src="https://www.super25.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Verde 1,20m">
-        <h3>Árvore Verde 1,20m</h3>
-        <p>Pinheiro Monaco com 720 galhos cheios.</p>
-        <a href="https://www.super25.com.br/casa-e-decoracao/arvore-de-natal-verde-grande-luxo-720-galhos-cheia-pinheiro-monaco-1-80-metro-decorada">Comprar</a>
+  <header class="relative z-10 text-center py-10">
+    <h1 class="text-4xl font-bold text-yellow-400">🎄 Loja de Árvores de Natal 🎄</h1>
+    <p class="mt-2 text-lg">Encontre a árvore perfeita para sua casa neste Natal!</p>
+  </header>
+
+  <main class="relative z-10 container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- Árvores Verdes -->
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://www.lojarealmania.com.br/wp-content/uploads/2021/11/arvore-pinheiro-de-natal-cor-verde-120m-modelo-luxo-170-galhos-a0212e-1.jpg" alt="Árvore Verde 1,20m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
+        <h2 class="text-xl font-bold">Árvore Verde 1,20m</h2>
+        <p class="mt-2 text-lg font-semibold">R$ 70,00</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 1,20 m de altura, contendo 623 galhos verdes. Ideal para decorar sua sala com elegância.</p>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G8T" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+      </div>
     </div>
 
-    <div class="product">
-        <img src="https://www.verytel.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Verde 1,80m">
-        <h3>Árvore Verde 1,80m</h3>
-        <p>Modelo Dupla com 661 galhos.</p>
-        <a href="https://www.verytel.com.br/arvore-de-natal-dupla-de-1-80-metros">Comprar</a>
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://www.verytel.com.br/wp-content/uploads/2021/11/arvore-de-natal-dupla-1-80m.jpg" alt="Árvore Verde 1,80m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
+        <h2 class="text-xl font-bold">Árvore Verde 1,80m</h2>
+        <p class="mt-2 text-lg font-semibold">R$ 90,00</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 1,80 m de altura, contendo 832 galhos verdes. Perfeita para ambientes médios.</p>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G90" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+      </div>
     </div>
 
-    <div class="product">
-        <img src="https://www.magazinetotaldecor.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Verde 2,10m">
-        <h3>Árvore Verde 2,10m</h3>
-        <p>Pinheiro com 1784 galhos.</p>
-        <a href="https://www.magazinetotaldecor.com.br/natal/arvores/arvore-de-natal-2-10m-pineiro-maior-quant-de-galhos-1784-galhos">Comprar</a>
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://www.magazinetotaldecor.com.br/wp-content/uploads/2021/11/arvore-de-natal-2-10m.jpg" alt="Árvore Verde 2,10m" class="object-contain h-full">
+      </div>
+      <div class="p-4 flex flex-col flex-grow">
+        <h2 class="text-xl font-bold">Árvore Verde 2,10m</h2>
+        <p class="mt-2 text-lg font-semibold">R$ 134,90</p>
+        <p class="mt-1 text-sm text-gray-700">Árvore com 2,10 m de altura, contendo 1.153 galhos verdes. Ideal para quem busca imponência e sofisticação.</p>
+        <a href="https://go.perfectpay.com.br/PPU38CQ0G92" target="_blank" class="mt-auto block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-center">Comprar</a>
+      </div>
     </div>
 
-    <div class="product">
-        <img src="https://www.magazinetotaldecor.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Branca 1,40m">
-        <h3>Árvore Branca 1,40m</h3>
-        <p>Modelo Nevada com 468 galhos.</p>
-        <a href="https://www.magazinetotaldecor.com.br/natal/arvores-de-natal/arvore-de-natal-nevada-luxo-1-50-cm-468-galhos">Comprar</a>
-    </div>
-
-    <div class="product">
-        <img src="https://www.atacadistasonline.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Branca 1,80m">
-        <h3>Árvore Branca 1,80m</h3>
-        <p>Modelo Alpina com 600 galhos.</p>
-        <a href="https://www.atacadistasonline.com.br/natal/arvore-de-natal/arvore-alpina-verde-nevada-c-600-galhos-1-80-m-magizi">Comprar</a>
-    </div>
-
-    <div class="product">
-        <img src="https://sumagazine.mercadoshops.com.br/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/a/0/a0212e_1.jpg" alt="Árvore Branca 2,10m">
-        <h3>Árvore Branca 2,10m</h3>
-        <p>Pinheiro Nevado com pinhas.</p>
-        <a href="https://sumagazine.mercadoshops.com.br/MLB-2003561175-arvore-de-natal-pinheiro-nevado-luxo-c-pinhas-210-metros-_JM">Comprar</a>
-    </div>
-</div>
-
-</body>
-</html>
+    <!-- Árvores Brancas -->
+    <div class="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+      <div class="h-80 flex items-center justify-center bg-gray-100">
+        <img src="https://www.magazinetotaldecor.com.br/wp-content/uploads/2021/11/ar
+::contentReference[oaicite:5]{index=5}
+ 
+```
